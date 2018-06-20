@@ -39,7 +39,7 @@ def is_hex_address(value: Any) -> bool:
         return False
     else:
         unprefixed = remove_0x_prefix(value)
-        return len(unprefixed) == 40
+        return len(unprefixed) == 64
 
 
 def is_binary_address(value: Any) -> bool:
@@ -59,13 +59,19 @@ def is_address(value: Any) -> bool:
     Checks if the given string in a supported value
     is an address in any of the known formats.
     """
+    print('TESTING')
+    print(value)
     if is_checksum_formatted_address(value):
+        print('got into 1')
         return is_checksum_address(value)
     elif is_hex_address(value):
+        print('got into 2')
         return True
     elif is_binary_address(value):
+        print('got into 3')
         return True
     else:
+        print('maximum failure')
         return False
 
 

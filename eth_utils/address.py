@@ -59,19 +59,13 @@ def is_address(value: Any) -> bool:
     Checks if the given string in a supported value
     is an address in any of the known formats.
     """
-    print('TESTING')
-    print(value)
     if is_checksum_formatted_address(value):
-        print('got into 1')
         return is_checksum_address(value)
     elif is_hex_address(value):
-        print('got into 2')
         return True
     elif is_binary_address(value):
-        print('got into 3')
         return True
     else:
-        print('maximum failure')
         return False
 
 
@@ -79,6 +73,8 @@ def to_normalized_address(value: AnyStr) -> HexAddress:
     """
     Converts an address to its normalized hexadecimal representation.
     """
+    print('CONVERTING ADDRESS')
+    print(value)
     hex_address = hexstr_if_str(to_hex, value).lower()
     if is_address(hex_address):
         return hex_address
@@ -101,7 +97,7 @@ def is_normalized_address(value: Any) -> bool:
 def to_canonical_address(address: AnyStr) -> Address:
     """
     Given any supported representation of an address
-    returns its canonical form (20 byte long string).
+    returns its canonical form (32 byte long string).
     """
     return Address(decode_hex(to_normalized_address(address)))
 
@@ -110,7 +106,7 @@ def is_canonical_address(address: Any) -> bool:
     """
     Returns `True` if the `value` is an address in its canonical form.
     """
-    if not is_bytes(address) or len(address) != 20:
+    if not is_bytes(address) or len(address) != 32:
         return False
     return address == to_canonical_address(address)
 
@@ -138,7 +134,7 @@ def to_checksum_address(value: AnyStr) -> ChecksumAddress:
             if int(address_hash[i], 16) > 7
             else norm_address[i]
         )
-        for i in range(2, 42)
+        for i in range(2, 66)
     ))
     return ChecksumAddress(HexAddress(checksum_address))
 

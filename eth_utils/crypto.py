@@ -12,9 +12,9 @@ def keccak(primitive: Union[bytes, int, bool]=None, hexstr: str=None, text: str=
     return keccak_256(to_bytes(primitive, hexstr, text))
 
 
-def blake2b(primitive: Union[bytes, int, bool]=None, hexstr: str=None, text: str=None) -> bytes:
-    return BLAKE2B(to_bytes(primitive, hexstr, text)).digest()
+def blake2b(primitive: Union[bytes, int, bool]=None, hexstr: str=None, text: str=None, digest_size=64) -> bytes:
+    return BLAKE2B(to_bytes(primitive, hexstr, text), digest_size=digest_size).digest()
 
 
-def blake2b_raw(primitive: Union[bytes, int, bool]=None, hexstr: str=None, text: str=None) -> bytes:
-    return BLAKE2B(to_bytes(primitive, hexstr, text))
+def blake2b_raw(primitive: Union[bytes, int, bool]=None, hexstr: str=None, text: str=None, digest_size=64) -> bytes:
+    return BLAKE2B(to_bytes(primitive, hexstr, text), digest_size=digest_size)

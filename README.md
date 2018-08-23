@@ -1,4 +1,4 @@
-# Ethereum Utils
+# AION Utils
 
 Common utility functions for codebases which interact with AION.
 
